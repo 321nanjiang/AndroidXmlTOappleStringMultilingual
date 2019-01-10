@@ -33,13 +33,18 @@
     DDXMLElement *rootElement = [xmlHelper analysisWithContentOfFile:path1];
     int i = 0;
     NSMutableString *strings = [[NSMutableString alloc] init];
+    
+    
     for (DDXMLElement *element in [rootElement children]) {
         i++;
         //替换字符
-        NSString * text = [NSString stringWithFormat:@"\"%@\" = \"%@\";", [[element attributeForName:@"name"] stringValue],[NSString removeSpaceAndNewline:element.stringValue]];
-        text = [NSString removeSpaceAndNewline:text];
+        NSString * text = [NSString stringWithFormat:@"\"%@\" = \"%@\";", [[element attributeForName:@"name"] stringValue],element.stringValue];
+        
+        NSLog(@"text===%@",text);
+        
+//        text = [NSString removeSpaceAndNewline:text];
         NSString * temp  = [NSString stringWithFormat:@"%@\n",text];
-        temp = [NSString toEmpty:temp];
+//        temp = [NSString toEmpty:temp];
         [strings appendString:temp];
     }
     // 字符串写入沙盒
